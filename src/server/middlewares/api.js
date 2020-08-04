@@ -4,7 +4,7 @@ const { execution } = require('./requestHandlers/execution');
 const { reports } = require('./requestHandlers/reports');
 const { start } = require('./requestHandlers/start');
 
-const { addOwner } = require('./requestHandlers/addOwner');
+const { invite } = require('./requestHandlers/invite');
 
 
 module.exports = function (app) {
@@ -19,7 +19,7 @@ module.exports = function (app) {
     // ++
     app.get('/history', history);
 
-    app.get('/invite', addOwner);
+    app.get('/invite', invite);
 
 
     // app.post('/api/posts', async (req, res) => {

@@ -14,12 +14,13 @@ module.exports.history = async function history(req,res) {
         ELSE 100
       END as progress 
       FROM userdata.reports_execution WHERE report_id = '${report_id}' 
-      -- AND '${login}' = ANY(owners)
+      AND '${login}' = ANY(owners)
     `);
+
     res.send(rows);
 
   } catch (error) {
-    console.log('Error: ' + error.message);
-    res.send("Error");
+    console.log(error);
+    res.send('Error: ' + error.message);
   }
 }

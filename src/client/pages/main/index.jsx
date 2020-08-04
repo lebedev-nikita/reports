@@ -15,7 +15,7 @@ export default class Main extends React.Component {
   };
 
   inviteMe = () => {
-    fetch('/invite')
+    fetch('/invite?execution_id=155')
   }
 
   render = () => (
@@ -31,8 +31,8 @@ export default class Main extends React.Component {
       <a href="/reports">reports</a> <br/> {/* сделал, но не понял, зачем это нужно */}
       <a href="/progress?execution_id=173">execution_id</a> <br/>
       {/* <a href="/download">download</a> <br/> */} {/* Сделал, но скачивать пока неоткуда */}
-      <a href="/history">history</a> <br/>
-      <a href="/invite">invite</a> <br/>
+      <a href="/history?report_id=SelectIContext">history</a> <br/>
+      <a href="/invite?execution_id=155">invite</a> <br/>
 
     </div>
   );
