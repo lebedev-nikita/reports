@@ -5,6 +5,7 @@ const { reports } = require('./requestHandlers/reports');
 const { start } = require('./requestHandlers/start');
 
 const { invite } = require('./requestHandlers/invite');
+const { uninvite } = require('./requestHandlers/uninvite');
 
 
 module.exports = function (app) {
@@ -20,6 +21,7 @@ module.exports = function (app) {
     app.get('/history', history);
 
     app.get('/invite', invite);
+    app.get('/uninvite', uninvite);
 
 
     // app.post('/api/posts', async (req, res) => {

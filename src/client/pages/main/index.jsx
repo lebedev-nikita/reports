@@ -17,6 +17,9 @@ export default class Main extends React.Component {
   inviteMe = () => {
     fetch('/invite?execution_id=155')
   }
+  uninviteMe = () => {
+    fetch('/uninvite?execution_id=155')
+  }
 
   render = () => (
     <div style={{ textAlign: 'center' }}>
@@ -27,12 +30,13 @@ export default class Main extends React.Component {
       </form>
       <button onClick={this.setCookie}>Set Cookie</button> <br/>
       <button onClick={this.inviteMe}>Invite me!</button> <br/>
+      <button onClick={this.uninviteMe}>Uninvite me!</button> <br/>
       {/* <a href="/start">start</a> <br/> */} {/* Ждем hadoop */}
       <a href="/reports">reports</a> <br/> {/* сделал, но не понял, зачем это нужно */}
       <a href="/progress?execution_id=173">execution_id</a> <br/>
       {/* <a href="/download">download</a> <br/> */} {/* Сделал, но скачивать пока неоткуда */}
       <a href="/history?report_id=SelectIContext">history</a> <br/>
-      <a href="/invite?execution_id=155">invite</a> <br/>
+      {/* <a href="/invite?execution_id=155">invite</a> <br/> */} {/* Та же функциональность реализована в кнопке выше */}
 
     </div>
   );
