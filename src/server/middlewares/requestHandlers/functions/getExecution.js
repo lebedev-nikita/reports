@@ -2,7 +2,7 @@ const { client } = require('../../../services/pg');
 
 module.exports.getExecution = async function getExecution(execution_id) {
   if (!execution_id) {
-    throw new Error('execution id undefined');
+    throw new Error('execution_id undefined');
   }
 
   const { rows } = await client.query(`
