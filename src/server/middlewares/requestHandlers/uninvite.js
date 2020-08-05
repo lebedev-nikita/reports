@@ -9,7 +9,11 @@ module.exports.uninvite = async function uninvite(req, res) {
 
     await client.query(`
       UPDATE userdata.reports_execution 
-      SET owners = array_remove(owners, '${login}')
+      SET owners = array_remove(owners, '${login}'),
+          removed_at = CASE
+            WHEN cardinality(array_remove(owners, '${login}')) = 0 AND removed_at IS NULL THEN current_timestamp
+            ELSE removed_at
+          END
       WHERE id = ${execution_id}
     `);
 

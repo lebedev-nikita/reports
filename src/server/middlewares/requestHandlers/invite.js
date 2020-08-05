@@ -10,9 +10,10 @@ module.exports.invite = async function invite(req, res) {
     await client.query(`
       UPDATE userdata.reports_execution 
       SET owners = CASE
-      WHEN '${login}' = ANY(owners) THEN owners
-      ELSE array_append(owners, '${login}')
-      END
+            WHEN '${login}' = ANY(owners) THEN owners
+            ELSE array_append(owners, '${login}')
+          END,
+          removed_at = NULL
       WHERE id = ${execution_id}
     `);
 
