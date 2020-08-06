@@ -1,6 +1,7 @@
-node_modules
-build-dev
-.vscode
+web/build
+web/build-dev
+web/node_modules
+web/package-lock.json
+web/logs
 .DS_Store
-.zip
-package-lock.json
+.vscode
