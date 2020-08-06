@@ -37,8 +37,8 @@ const Header = ({ page }) => {
   return (
     <Root>
       <Name>
-        <ShortName>Тест</ShortName>
-        <FullName></FullName>
+        <ShortName>ВОВ</ShortName>
+        <FullName>Витрина отчетов <br/> и выгрузок</FullName>
       </Name>
     </Root>
   );
