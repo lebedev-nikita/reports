@@ -19,7 +19,7 @@ const Name = styled.div`
   justify-content: flex-start;
   align-items: center;
   position: absolute;
-  left: 30px;
+  left: 15px;
 `;
 
 const ShortName = styled(Typography)`
@@ -29,8 +29,8 @@ const ShortName = styled(Typography)`
 
 const FullName = styled(Typography)`
   font-size: 12px;
-  line-height: 16px;
-  margin-left: 3px;
+  line-height: 15px;
+  margin-left: 6px;
 `;
 
 const Header = ({ page }) => {
