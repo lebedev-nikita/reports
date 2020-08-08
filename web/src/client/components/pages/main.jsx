@@ -22,7 +22,7 @@ const Content = styled.div`
   display: flex;
   height: calc(100vh - 50px);
 	justify-content: space-evenly;
-	padding: 10vh 0;
+	padding: 5vh 0;
 `;
 
 const Main = () => {

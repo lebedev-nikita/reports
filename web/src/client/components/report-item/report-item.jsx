@@ -4,11 +4,10 @@ import styled from 'styled-components';
 import Box from '@material-ui/core/Box';
 
 
-// const ReportItem = ({report}) => {
-const ReportItem = (props) => {
+const ReportItem = ({report}) => {
   return (
     <div>
-      {JSON.stringify(props)}
+      {report.id}
     </div>
   );
 };

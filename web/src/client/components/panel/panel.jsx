@@ -2,10 +2,48 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 
-const Panel = styled(Box)`
+
+const PanelBox = styled(Box)`
   background-color: yellow;
   width: 40vw;
+
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-bottom: 2vh;
+
+  display: flex;
+  flex-direction: column;
 `;
+
+const PanelHeader = styled(Typography)`
+  text-align: center;
+  color: #1976d2;
+  font-size: 26px;
+
+  flex-grow: 0;
+`;
+
+const ChildrenBox = styled(Box)`
+  background-color: silver;
+  overflow-x: scroll;
+
+  flex-grow: 1;
+`;
+
+
+const Panel = (props) => {
+  return (
+    <PanelBox>
+      <PanelHeader>
+        {props.header}
+      </PanelHeader>
+      <ChildrenBox>
+        {props.children}
+      </ChildrenBox>
+    </PanelBox>
+  );
+};
 
 export default Panel;
