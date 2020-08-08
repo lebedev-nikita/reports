@@ -6,11 +6,8 @@ import Typography from '@material-ui/core/Typography';
 
 
 const PanelBox = styled(Box)`
-  background-color: yellow;
-  width: 40vw;
+  width: 45vw;
 
-  padding-left: 2vw;
-  padding-right: 2vw;
   padding-bottom: 2vh;
 
   display: flex;
@@ -26,7 +23,6 @@ const PanelHeader = styled(Typography)`
 `;
 
 const ChildrenBox = styled(Box)`
-  background-color: silver;
   overflow-x: scroll;
 
   flex-grow: 1;

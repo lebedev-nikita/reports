@@ -5,4 +5,5 @@ web/package-lock.json
 web/logs
 .DS_Store
 .vscode
-*template*
+.templates
+template.config.js
