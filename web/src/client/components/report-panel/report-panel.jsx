@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Panel from '../panel';
 import ReportItem from '../report-item';
 
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CenteredCircularProgress from '../centered-circular-progress';
 
 
 const ReportPanel = ({reports, expanded, setExpanded}) => {
@@ -30,7 +30,7 @@ const ReportPanel = ({reports, expanded, setExpanded}) => {
 
   return (
     <Panel header="Доступные запросы">
-      {reports ? createReportItemArray(reports) : <CircularProgress />}
+      {reports ? createReportItemArray(reports) : <CenteredCircularProgress />}
     </Panel>
   );
 };

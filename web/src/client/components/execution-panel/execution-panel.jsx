@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
+import CenteredCircularProgress from '../centered-circular-progress';
 import ExecutionItem from '../execution-item';
 
 
@@ -20,7 +20,7 @@ const ExecutionPanel = ({executions}) => {
 
   return (
     <Panel header="Выполненные запросы">
-      {executions ? createExecutionItemArray(executions) : <CircularProgress />}
+      {executions ? createExecutionItemArray(executions) : <CenteredCircularProgress />}
     </Panel>
   );
 };
