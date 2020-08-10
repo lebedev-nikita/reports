@@ -5,8 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import ExecutionItem from '../execution-item';
-import { getQuery } from '../../services/query-service';
-
 
 
 import Panel from '../panel';
@@ -21,9 +19,8 @@ const ExecutionPanel = ({executions}) => {
 
 
   return (
-    <Panel header="Выполныенные запросы">
+    <Panel header="Выполненные запросы">
       {executions ? createExecutionItemArray(executions) : <CircularProgress />}
-      {/* <Typography>{JSON.stringify(executions)}</Typography> */}
     </Panel>
   );
 };

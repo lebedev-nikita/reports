@@ -38,6 +38,7 @@ const Main = () => {
 
 	React.useEffect(() => {
 		if (expandedReport !== null) {
+			setExecutions(null); // чтобы появился <CircularProgress />
 			getQuery(`/history?report_id=${expandedReport}`)
 				.then(setExecutions)
 				.catch(console.log);

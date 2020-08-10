@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { getQuery } from '../../services/query-service';
-
 import Panel from '../panel';
 import ReportItem from '../report-item';
 
@@ -29,7 +27,6 @@ const ReportPanel = ({reports, expanded, setExpanded}) => {
     return arr;
   }
   
-
 
   return (
     <Panel header="Доступные запросы">
