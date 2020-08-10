@@ -24,7 +24,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <StylesProvider injectFirst>
-        <MuiThemeProvider theme = { theme }>
+        <MuiThemeProvider theme={theme}>
           <App />
         </MuiThemeProvider>
       </StylesProvider>

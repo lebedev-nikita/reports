@@ -16,7 +16,6 @@ const PanelBox = styled(Box)`
 
 const PanelHeader = styled(Typography)`
   text-align: center;
-  color: #1976d2;
   font-size: 26px;
 
   flex-grow: 0;
@@ -32,7 +31,7 @@ const ChildrenBox = styled(Box)`
 const Panel = (props) => {
   return (
     <PanelBox>
-      <PanelHeader>
+      <PanelHeader color="primary">
         {props.header}
       </PanelHeader>
       <ChildrenBox>
