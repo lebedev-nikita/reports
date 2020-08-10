@@ -26,21 +26,32 @@ const Content = styled.div`
 `;
 
 const Main = () => {
-	const [data, setData] = useState();
+	const [reports, setReports] = useState(null);
+	const [executions, setExecutions] = useState(null);
+	const [expandedReport, setExpandedReport] = useState(null);
 
-	// useEffect(() => {
-	// 	(async () => {
-	// 		const response = await getQuery(`/getTest`, {});
-	// 		setData(response);
-	// 	})();
-	// }, [])
+	React.useEffect(() => {
+		getQuery('/reports')
+			.then(setReports)
+			.catch(console.log);
+	}, []);
+
+	React.useEffect(() => {
+		if (expandedReport !== null) {
+			getQuery(`/history?report_id=${expandedReport}`)
+				.then(setExecutions)
+				.catch(console.log);
+		} else {
+			setExecutions([]);
+		}
+	}, [expandedReport]);
 
 	return (
 		<Root>
 			<Header page="main" />
 			<Content>
-				<ReportPanel />
-				<ExecutionPanel />
+				<ReportPanel reports={reports} expanded={expandedReport} setExpanded={setExpandedReport} />
+				<ExecutionPanel executions={executions} />
 			</Content>
 		</Root>
 	)

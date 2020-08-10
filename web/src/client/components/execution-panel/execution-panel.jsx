@@ -11,21 +11,13 @@ import { getQuery } from '../../services/query-service';
 
 import Panel from '../panel';
 
-const ExecutionPanel = () => {
-  const [executions, setExecutions] = React.useState(null)
+const ExecutionPanel = ({executions}) => {
 
   const createExecutionItemArray = (executions) => {
     return executions.map((exec) => {
       return <ExecutionItem key={exec.id} execution={exec} />
     })
   }
-
-  React.useEffect(() => {
-    getQuery('/history?report_id=SelectIContext')
-      .then(setExecutions)
-      .catch(console.log);
-  }, []);
-
 
 
   return (
