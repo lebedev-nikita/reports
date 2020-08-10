@@ -11,7 +11,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { jssPreset } from '@material-ui/core';
 
 
-const ReportItem = ({ report }) => {
+const ReportItem = ({ report, expanded, onChange }) => {
 
   const getInputFields = (report) => {
     return report.fields.map((f) => (
@@ -22,7 +22,7 @@ const ReportItem = ({ report }) => {
   }
 
   return (
-    <Accordion square={true}>
+    <Accordion square={true} expanded={expanded} onChange={onChange}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} >
         <Box>
           <Typography> {report.title} </Typography> <br />
