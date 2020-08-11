@@ -2,14 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment'
 
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import { Card, CardContent } from '@material-ui/core';
+import { Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-
+import ExecutionError from '../execution-error/execution-error';
 
 
 const ExecutionItem = ({ execution: exec }) => {
@@ -29,6 +25,7 @@ const ExecutionItem = ({ execution: exec }) => {
         <Typography>
           {'Создатель: ' + exec.creator}
         </Typography>
+        {exec.error ? <ExecutionError error={exec.error} /> : null}
         <Accordion>
           <AccordionSummary>
             <Typography>
