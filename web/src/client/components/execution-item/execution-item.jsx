@@ -5,7 +5,10 @@ import moment from 'moment'
 import { Card, CardContent } from '@material-ui/core';
 import { Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+
 import ExecutionError from '../execution-error/execution-error';
+import ExecutionProgress from '../execution-progress';
+import ExecutionDownload from '../execution-download';
 
 
 const ExecutionItem = ({ execution: exec }) => {
@@ -25,7 +28,17 @@ const ExecutionItem = ({ execution: exec }) => {
         <Typography>
           {'Создатель: ' + exec.creator}
         </Typography>
-        {exec.error ? <ExecutionError error={exec.error} /> : null}
+        {
+          exec.error !== null 
+          ? 
+          <ExecutionError error={exec.error} /> 
+          : 
+          exec.progress < 100 
+          ?
+          <ExecutionProgress progress={exec.progress} />
+          :
+          <ExecutionDownload execution={exec} />
+        }
         <Accordion>
           <AccordionSummary>
             <Typography>
