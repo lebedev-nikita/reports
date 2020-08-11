@@ -22,7 +22,7 @@ const PanelHeader = styled(Typography)`
 `;
 
 const ChildrenBox = styled(Box)`
-  overflow-x: scroll;
+  overflow-y: scroll;
   
   flex-grow: 1;
 `;

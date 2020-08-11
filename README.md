@@ -10,3 +10,7 @@ http://localhost:33333
 
 3. Раскомментируйте строку
   > // host: 'dad-datamart1.consultant.ru',
+
+**Чтобы увидеть панель выгрузок:**  
+В файле history.js закомментируйте строку
+> AND '${login}' = ANY(owners)
