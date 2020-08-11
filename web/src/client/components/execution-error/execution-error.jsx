@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import Typography from '@material-ui/core/Typography';
 
 
 const ExecutionError = ({ error }) => {

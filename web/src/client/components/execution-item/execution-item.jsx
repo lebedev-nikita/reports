@@ -3,18 +3,17 @@ import styled from 'styled-components';
 import moment from 'moment'
 
 import { Card, CardContent } from '@material-ui/core';
-import { Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
 import ExecutionError from '../execution-error/execution-error';
 import ExecutionProgress from '../execution-progress';
 import ExecutionDownload from '../execution-download';
+import ExecutionParams from '../execution-params';
+
+import TestAccordionJson from '../test-accordion-json';
 
 
 const ExecutionItem = ({ execution: exec }) => {
-  const paramsToString = (params) => {
-    return JSON.stringify(params, null, 2)
-  }
 
   return (
     <Card variant="outlined" square={true}>
@@ -29,7 +28,7 @@ const ExecutionItem = ({ execution: exec }) => {
           {'Создатель: ' + exec.creator}
         </Typography>
         {
-          exec.error !== null 
+          exec.error
           ? 
           <ExecutionError error={exec.error} /> 
           : 
@@ -39,18 +38,7 @@ const ExecutionItem = ({ execution: exec }) => {
           :
           <ExecutionDownload execution={exec} />
         }
-        <Accordion>
-          <AccordionSummary>
-            <Typography>
-              Полный объект execution:
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              {JSON.stringify(exec)}
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
+        <ExecutionParams params={exec.params} />
       </CardContent>
     </Card>
   );

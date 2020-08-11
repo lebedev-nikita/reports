@@ -8,15 +8,13 @@ import Typography from '@material-ui/core/Typography';
 
 const ExecutionDownload = ({ execution: exec }) => {
   return (
-    <Box>
-      <Typography>
-        <a href={`api/download?execution_id=${exec.id}`}
-          download={'report_' + moment(exec.created_at).format('YYYYMMDDhhmmss')}
-        >
-          Скачать отчёт
+    <Typography>
+      <a href={`api/download?execution_id=${exec.id}`}
+        download={'report_' + moment(exec.created_at).format('YYYYMMDDhhmmss')}
+      >
+        Скачать отчёт
         </a>
-      </Typography>
-    </Box>
+    </Typography>
   );
 };
 
