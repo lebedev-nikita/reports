@@ -23,8 +23,8 @@ const ReportItem = ({ report, expanded, onChange }) => {
     <Accordion square={true} expanded={expanded} onChange={onChange}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} >
         <Box>
-          <Typography> {report.title} </Typography> <br />
-          <Typography> {report.description} </Typography>
+          <Typography variant="h6" component="h2" > {report.title} </Typography> <br />
+          <Typography variant="body1" > {report.description} </Typography>
         </Box>
       </AccordionSummary>
       <MyAccordionDetails>

@@ -10,8 +10,8 @@ const ExecutionError = ({ error }) => {
   return (
     <Accordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography color="secondary">
-          Запрос завершился с ошибкой:
+        <Typography color="error">
+          При подготовке отчета произошла ошибка:
         </Typography>
       </AccordionSummary>
       <AccordionDetails>

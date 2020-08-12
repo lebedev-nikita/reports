@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import moment from 'moment'
 
 import { Card, CardContent } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
 
 import ExecutionError from '../execution-error/execution-error';
 import ExecutionProgress from '../execution-progress';
@@ -11,22 +10,26 @@ import ExecutionDownload from '../execution-download';
 import ExecutionParams from '../execution-params';
 
 import TestAccordionJson from '../test-accordion-json';
+import ExecutionPair from '../execution-pair';
 
 
 const ExecutionItem = ({ execution: exec }) => {
-
+  
   return (
     <Card variant="outlined" square={true}>
       <CardContent>
-        <Typography>
-          {'Дата создания: ' + moment(exec.created_at).format('DD.MM.YYYY hh:mm:ss')}
-        </Typography>
-        <Typography>
-          {'Дата запуска: ' + moment(exec.started_at).format('DD.MM.YYYY hh:mm:ss')}
-        </Typography>
-        <Typography>
-          {'Создатель: ' + exec.creator}
-        </Typography>
+        <ExecutionPair
+          left={'Дата создания'}
+          right={moment(exec.created_at).format('DD.MM.YYYY hh:mm:ss')}
+        />
+        <ExecutionPair
+          left={'Дата запуска'}
+          right={moment(exec.started_at).format('DD.MM.YYYY hh:mm:ss')}
+        />
+        <ExecutionPair
+          left={'Создатель'}
+          right={exec.creator}
+        />
         {
           exec.error
           ? 
@@ -39,6 +42,7 @@ const ExecutionItem = ({ execution: exec }) => {
           <ExecutionDownload execution={exec} />
         }
         <ExecutionParams params={exec.params} />
+        {/* <TestAccordionJson header="Полный объект execution:" obj={exec} /> */}
       </CardContent>
     </Card>
   );

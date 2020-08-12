@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import { Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+
+import ExecutionPair from '../execution-pair';
+
 
 const MyAccordionDetails = styled(AccordionDetails)`
   display: flex;
@@ -13,16 +15,17 @@ const MyAccordionDetails = styled(AccordionDetails)`
 
 
 const ExecutionParams = ({ params }) => {
+
   const paramsToString = (params) => {
     return Object.entries(params).map(([key, value]) => {
       return (
-        <Box whiteSpace="nowrap" key={key}>
-          <Typography>
-            {`${key}: ${value}`}
-          </Typography>
-        </Box>
-      )
-    })
+        <ExecutionPair
+          key={key}
+          left={key}
+          right={value}
+        />
+      );
+    });
   }
 
   return (
@@ -33,9 +36,7 @@ const ExecutionParams = ({ params }) => {
         </Typography>
       </AccordionSummary>
       <MyAccordionDetails display="flex" >
-        {/* <Typography> */}
         {paramsToString(params)}
-        {/* </Typography> */}
       </MyAccordionDetails>
     </Accordion>
   );

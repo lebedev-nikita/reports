@@ -8,16 +8,14 @@ import Typography from '@material-ui/core/Typography';
 const PanelBox = styled(Box)`
   width: 45vw;
 
-  padding-bottom: 2vh;
-
   display: flex;
   flex-direction: column;
 `;
 
 const PanelHeader = styled(Typography)`
   text-align: center;
-  font-size: 26px;
-
+  margin: 1.5vh 0 1vh 0;
+  
   flex-grow: 0;
 `;
 
@@ -31,7 +29,7 @@ const ChildrenBox = styled(Box)`
 const Panel = (props) => {
   return (
     <PanelBox>
-      <PanelHeader color="primary">
+      <PanelHeader color="primary" variant="h5" component="h1">
         {props.header}
       </PanelHeader>
       <ChildrenBox>
