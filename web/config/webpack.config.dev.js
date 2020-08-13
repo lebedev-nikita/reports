@@ -1,4 +1,4 @@
-const {resolve} = require('path');
+const { resolve } = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -23,7 +23,7 @@ module.exports = merge(commonConfig, {
       //favicon: resolve(__dirname, '..', 'src', 'client', 'static', 'favicon.png'),
       alwaysWriteToDisk: true
     }),
-	new HtmlWebpackHarddiskPlugin({
+    new HtmlWebpackHarddiskPlugin({
       outputPath: resolve(__dirname, '..', 'build-dev', 'client')
     })
   ]

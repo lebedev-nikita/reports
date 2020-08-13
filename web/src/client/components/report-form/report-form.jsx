@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 
 
 const MyForm = styled.form`
@@ -12,32 +13,37 @@ const MyForm = styled.form`
 `;
 
 const MyTextField = styled(TextField)`
-  width: 47%;
+  width: 100%;
 `;
 
 const MyButton = styled(Button)`
-  width: 47%;
+  width: 100%;
   margin-top: 10px;
 `;
 
 
-const ReportForm = ({ report }) => {
-
-  const getInputFields = (report) => {
-    return report.fields.map((f) => (
+const getInputFields = (report) => {
+  return report.fields.map((f) => (
+    <Grid item xs={6} key={f.id} >
       <MyTextField label={f.name} name={f.id} key={f.id} />
-    ));
-  }
+    </Grid>
+  ));
+}
 
+
+const ReportForm = ({ report }) => {
   return (
     <MyForm action="api/start" method="post">
-      {getInputFields(report)}
-      <MyButton variant="contained" color="primary" type="submit" >
-        Отправить
-      </MyButton>
+      <Grid container spacing={1} >
+        {getInputFields(report)}
+        <Grid item xs={6}> 
+          <MyButton variant="contained" color="primary" type="submit" >
+            Отправить
+          </MyButton>
+        </Grid>
+      </Grid>
     </MyForm>
   );
 };
-
 
 export default ReportForm;
