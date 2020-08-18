@@ -14,7 +14,8 @@ module.exports.history = async function history(req,res) {
         ELSE 100
       END as progress 
       FROM userdata.reports_execution WHERE report_id = '${report_id}' 
-      AND '${login}' = ANY(owners)
+      -- AND '${login}' = ANY(owners)
+      ORDER BY id DESC
     `);
 
     res.send(rows);

@@ -7,3 +7,4 @@ web/logs
 .vscode
 .templates
 template.config.js
+web/test.js

@@ -12,7 +12,7 @@ const MyForm = styled.form`
   flex-wrap: wrap;  
 `;
 
-const MyTextField = styled(TextField)`
+const StyledTextField = styled(TextField)`
   width: 100%;
 `;
 
@@ -22,21 +22,20 @@ const MyButton = styled(Button)`
 `;
 
 
-const getInputFields = (report) => {
-  return report.fields.map((f) => (
-    <Grid item xs={6} key={f.id} >
-      <MyTextField label={f.name} name={f.id} key={f.id} />
-    </Grid>
-  ));
-}
-
-
 const ReportForm = ({ report }) => {
+  const getInputFields = (report) => {
+    return report.fields.map((f) => (
+      <Grid item xs={6} key={f.id} >
+        <StyledTextField label={f.name} name={f.id} key={f.id} />
+      </Grid>
+    ));
+  };
+
   return (
     <MyForm action="api/start" method="post">
       <Grid container spacing={1} >
         {getInputFields(report)}
-        <Grid item xs={6}> 
+        <Grid item xs={6}>
           <MyButton variant="contained" color="primary" type="submit" >
             Отправить
           </MyButton>

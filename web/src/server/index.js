@@ -28,9 +28,10 @@ const app = express();
 
 app.set('env', process.env.NODE_ENV);
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-if(process.env.NODE_ENV == 'production') {
+if (process.env.NODE_ENV == 'production') {
   authFilter(app);
 }
 

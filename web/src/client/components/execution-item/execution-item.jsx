@@ -19,6 +19,10 @@ const ExecutionItem = ({ execution: exec }) => {
     <Card variant="outlined" square={true}>
       <CardContent>
         <ExecutionPair
+          left={'id'}
+          right={exec.id}
+        />
+        <ExecutionPair
           left={'Дата создания'}
           right={moment(exec.created_at).format('DD.MM.YYYY hh:mm:ss')}
         />

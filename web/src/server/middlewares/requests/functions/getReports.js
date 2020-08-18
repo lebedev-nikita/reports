@@ -11,7 +11,7 @@ module.exports.getReports = async function getReports(login) {
     ON report.id = last_report_version.id AND report.updated_at = last_report_version.updated_at
     JOIN service.report_owners
     ON report.id = report_owners.report_id
-    WHERE '${login}' = ANY(owners)
+    -- WHERE '${login}' = ANY(owners)
   `);
 
   let ret = {};
