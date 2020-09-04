@@ -32,7 +32,8 @@ const ReportForm = ({ report }) => {
   };
 
   return (
-    <MyForm action="api/start" method="post">
+    // TODO: сделать разные 
+    <MyForm action={`api/start?report_id=${report.id}`} method="post">
       <Grid container spacing={1} >
         {getInputFields(report)}
         <Grid item xs={6}>

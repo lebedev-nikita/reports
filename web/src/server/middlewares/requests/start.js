@@ -3,15 +3,14 @@ const { client: PostgresClient } = require('../../services/pg');
 const { getReports } = require('./functions/getReports');
 const { getExecution } = require('./functions/getExecution');
 const moment = require('moment');
+const axios = require('axios');
 
 
 async function start(req, res) {
   try {
-    console.log(req.body);
-    // res.send(req.body);
-    // return;
     const login = 'admin';
-    const report_id = 'SelectOnline';
+
+    const report_id = req.query.report_id;
     const report_version = (await getReports(login))[report_id].version;
     const creator = 'admin'; // ThreadContext.get("username") != null ? ThreadContext.get("username"): "admin"
     const params = JSON.stringify(req.body);
@@ -31,16 +30,23 @@ async function start(req, res) {
     const eCreator = execution.creator;
     const eCreatedAt = format_YYYYMMDDhhmmss(execution.created_at);
 
-    let oozieClient = new OozieClient({
-      oozieUrl: 'http://dad-oozie.consultant.ru/oozie'
-    });
-
-    const { id: workflow_id } = await oozieClient.createJob(xmlConfig({
+    const oozieUrl = 'http://dad-oozie.consultant.ru/oozie';
+    const xmlConfig = getXmlConfig({
       report_id: report_id,
       execution_id: execution_id,
       created_at: eCreatedAt,
       creator: eCreator
-    }));
+    })
+
+    
+    // let oozieClient = new OozieClient({ oozieUrl });
+    // const { id: workflow_id } = await oozieClient.createJob(xmlConfig);
+    // console.log(workflow_id);
+
+    const requestConfig = {
+      headers: { 'Content-Type': 'text/xml' }
+    };
+    const { id: workflow_id } = await axios.post(oozieUrl, xmlConfig, requestConfig);
     console.log(workflow_id);
     /* ---- */
 
@@ -62,7 +68,7 @@ function format_YYYYMMDDhhmmss(date) {
 }
 
 
-function xmlConfig({
+function getXmlConfig({
   report_id,
   execution_id,
   created_at,
@@ -74,26 +80,21 @@ function xmlConfig({
 }) {
   return `
     <configuration>
-      <!-- SERVICE_PARAMS -->
       <property>
           <name>user.name</name>
           <value>${userName}</value>
-          <!-- <value>administrator</value> -->
       </property>
       <property>
           <name>nameNode</name>
           <value>${nameNode}</value>
-          <!-- <value>hdfs://hadoop-manager1.consultant.ru:8020</value> -->
       </property>
       <property>
           <name>jobTracker</name>
           <value>${jobTracker}</value>
-          <!-- <value>hadoop-manager1.consultant.ru:8032</value> -->
       </property>
       <property>
           <name>dryrun</name>
           <value>False</value> 
-          <!-- <value>False</value> -->
       </property>
       <property>
           <name>oozie.action.sharelib.for.spark</name>
@@ -106,7 +107,6 @@ function xmlConfig({
       <property>
           <name>workflowPath</name>
           <value>${workflowPath}</value>
-          <!-- <value>hdfs://hadoop-manager1.consultant.ru:8020/user/administrator/prod/meta/oozie/workflows</value> -->
       </property>
       <property>
           <name>oozie.use.system.libpath</name>
@@ -116,41 +116,29 @@ function xmlConfig({
           <name>security_enabled</name>
           <value>False</value>
       </property>
-      <!--  -->
       <property>
           <name>jobClassName</name>
           <value>dad.reports.${report_id}</value> 
-          <!-- <value>dad.reports.SelectOnline</value> -->
       </property>
       <property>
           <name>arg1</name>
-          <!-- EXECUTION_ID to string -->
           <value>${execution_id}</value>
-          <!-- <value>218</value> -->
       </property>
-          <!-- conf.setProperty(OozieClient.APP_PATH, SERVICE_PARAMS.get("nameNode") + "/user/administrator/prod/meta/oozie/workflows/service/report_job.xml"); -->
-      <!-- ВОТ КАК ЗДЕСЬ ОТОБРАЗИТЬ прописать APP_PATH ??? -->
       <property>
-          <!-- <name>http://hadoop-manager1.consultant.ru:11000/oozie</name> -->
           <name>oozie.wf.application.path</name>
           <value>${nameNode}/user/${userName}/prod/meta/oozie/workflows/service/report_job.xml</value>
       </property>
       <property>
           <name>name</name>
           <value>${report_id}</value>
-          <!-- <value>SelectOnline</value> -->
       </property>
       <property>
           <name>creator</name>
           <value>${creator}</value>
-          <!-- <value>admin</value> -->
       </property>
-      <!--  -->
       <property>
           <name>created_at</name>
           <value>${created_at}</value>
-          <!-- createdAt -->
-          <!-- <value>20200525014024</value> -->
       </property>
   </configuration>
 `;
